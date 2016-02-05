@@ -4,7 +4,7 @@
   "description": "All package.json with common deps in one place",
   "homepage": "https://github.com/geakstr/package-together",
   "author": "Dmitry Kharitonov <geakstr@me.com>",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "private": false,
   "repository": {
     "type": "git",
