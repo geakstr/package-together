@@ -1,3 +1,7 @@
+# package-together
+
+Install: `npm install package-together`
+
 `package-together` allow to describe all sub `package.json` files for complex project in one main `package.json`. The advantage of this — guarantee to use the same versions of the dependencies throughout the project.
 
 Imagine you have next project with two subprojects `api` and `client`:
@@ -9,7 +13,7 @@ project
   package.json
 ```
 
-With `package-together` you don't need to create separate `project/api/package.json` and `project/client/package.json`, instead write all of this in `project/package.json`.
+With `package-together` you don't need to create separate `project/api/package.json` and `project/client/package.json`, instead write all of this in `project/package.json` in `subpackages` section:
 
 ```json
 {
