@@ -1,30 +1,84 @@
-If you have a project divided into several services that use the same dependencies the same versions — `package-together` can be useful. With it you describe all sub `package.json` files in one place. So versions of the dependencies is the same for all subprojects.
+`package-together` allow to describe all sub `package.json` files for complex project in one main `package.json`. The advantage of this — guarantee to use the same versions of the dependencies throughout the project.
 
-Install by `npm install package-together`
-
-Imagine you have next project with two submodules `api` and `client` and `package.json`.
+Imagine you have next project with two subprojects `api` and `client`:
 
 ```
---project
-   |--api
-   |--client
-   package.json
+project
+  |--api
+  |--client
+  package.json
 ```
-   
-You use `async` module in each submodule and you want to have the same version of it. With `package-together` you don't need to create separate `api/package.json` and `client/package.json`, instead write all in `project/package.json`.
+
+With `package-together` you don't need to create separate `project/api/package.json` and `project/client/package.json`, instead write all of this in `project/package.json`.
 
 ```json
-...
-"packages": {
-  "api": {
-    "dependencies": ["async"]
-  },
-  "client": {
-    "dependencies": ["async"]
-  }
-},
-"dependencies": {
-  "async": "1.5.2"
+{
+   "name": "project name",
+   "version": "1.0.0",
+   "description": "Oh my project",
+   "subpackages": {
+     "api": {
+       "name": "api",
+       "version": "1.0.1",
+       "description": "API project",
+       "dependencies": ["async", "bcryptjs"],
+       "devDependencies": ["eslint", "nodemon"]
+     },
+     "client": {
+       "name": "client",
+       "version": "2.1.3",
+       "description": "Client project",
+       "dependencies": ["async"],
+       "devDependencies": ["eslint", "webpack"]
+     }
+   },
+   "dependencies": {
+     "async": "1.5.2",
+     "bcryptjs": "2.3.0"
+   },
+   "devDependencies": {
+      "nodemon": "^1.8.1",
+      "webpack": "^1.12.12",
+      "eslint": "^1.10.3"
+   }
 }
-...
 ```
+
+`package-together` build (completely rewrite) sub `package.json` and install dependencies for each subproject.
+
+```json
+// project/api/package.json
+{
+   "name": "api",
+   "version": "1.0.1",
+   "description": "API project",
+   "dependencies": {
+      "async": "1.5.2",
+      "bcryptjs": "2.3.0"
+   },
+   "devDependencies": {
+      "nodemon": "^1.8.1",
+      "eslint": "^1.10.3"
+   }
+}
+```
+
+```json
+// project/client/package.json
+{
+   "name": "client",
+   "version": "2.1.3",
+   "description": "Client project",
+   "dependencies": {
+      "async": "1.5.2"
+   },
+   "devDependencies": {
+      "eslint": "^1.10.3",
+      "webpack": "^1.12.12"
+   }
+}
+```
+
+As you can see `api` and `client` has common dependencies (`async` and `eslint`) with the same version.
+
+If you want use specific version of dependency for subproject `package-together` allow this via next syntaxis: `"dependencies": ["async@1.3.0"]`
