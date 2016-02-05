@@ -18,11 +18,11 @@ fs.readFile(path.resolve(base, "package.json"), "utf8", function(err, json) {
   var dependencies = json.dependencies;
   var devDependencies = json.devDependencies;
 
-  var together = json.together;
+  var subpackages = json.subpackages;
 
-  for (var name in together) {
-    if (together.hasOwnProperty(name)) {
-      var app = together[name];
+  for (var name in subpackages) {
+    if (subpackages.hasOwnProperty(name)) {
+      var app = subpackages[name];
 
       if (app.dependencies === true) {
         app.dependencies = dependencies;
