@@ -1,6 +1,6 @@
 {
   "name": "package-together",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "All in one package.json files with common deps",
   "homepage": "https://github.com/geakstr/package-together",
   "author": "Dmitry Kharitonov <geakstr@me.com>",
