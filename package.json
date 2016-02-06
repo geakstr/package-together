@@ -1,7 +1,7 @@
 {
   "name": "package-together",
   "version": "1.0.0",
-  "description": "All package.json with common deps in one place",
+  "description": "All in one package.json files with common deps",
   "homepage": "https://github.com/geakstr/package-together",
   "author": "Dmitry Kharitonov <geakstr@me.com>",
   "license": "WTFPL",
