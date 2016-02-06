@@ -1,10 +1,10 @@
 {
   "name": "package-together",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "All package.json with common deps in one place",
   "homepage": "https://github.com/geakstr/package-together",
   "author": "Dmitry Kharitonov <geakstr@me.com>",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "WTFPL",
   "private": false,
   "repository": {
     "type": "git",

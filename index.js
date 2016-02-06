@@ -40,25 +40,28 @@ fs.readFile(path.resolve(base, "package.json"), "utf8", function(err, json) {
         app.devDependencies = {};
       }
 
-      var p = path.resolve(base, name + "/package.json");
-      fs.writeFile(p, JSON.stringify(app, null, 2), function(err) {
-        if (err) {
-          return console.log(err);
-        }
-
-        exec("npm install", {
-          cwd: path.resolve(base, name)
-        }, function(err, stdout, stderr) {
-          if (err) {
-            return console.log(err);
-          }
-          console.log(stdout);
-          console.log(stderr);
-        });
-      });
+      write(path.resolve(base, name), JSON.stringify(app, null, 2));
     }
   }
 });
+
+function write(dir, data) {
+  fs.writeFile(path.resolve(dir, "package.json"), data, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+
+    exec("npm install", {
+      cwd: dir
+    }, function(err, stdout, stderr) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(stdout);
+      console.log(stderr);
+    });
+  });
+}
 
 // TODO: use flag for install not specified npm deps
 function fill(alldeps, appdeps, flag) {
