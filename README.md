@@ -20,6 +20,9 @@ With `package-together` you don't need to create separate `project/api/package.j
    "name": "project name",
    "version": "1.0.0",
    "description": "Oh my project",
+   "scripts": {
+     "postinstall": "node ./node_modules/package-together/index.js"
+   },
    "subpackages": {
      "api": {
        "name": "api",
@@ -48,7 +51,7 @@ With `package-together` you don't need to create separate `project/api/package.j
 }
 ```
 
-`package-together` build (completely rewrite) sub `package.json` and install dependencies for each subproject.
+After `npm install` (look, we have `postinstall` task) `package-together` build (completely rewrite) sub `package.json` and install dependencies for each subproject.
 
 ```json
 // project/api/package.json
@@ -85,4 +88,6 @@ With `package-together` you don't need to create separate `project/api/package.j
 
 As you can see `api` and `client` has common dependencies (`async` and `eslint`) with the same version.
 
-If you want use specific version of dependency for subproject `package-together` allow this via next syntaxis: `"dependencies": ["async@1.3.0"]`
+If you want use specific version of dependency for subproject `package-together` allow this via next syntaxis: `"dependencies": ["async@1.3.0"]`.
+
+For using all dependencies from main `package.json` declare `"dependencies": true`, `"devDependencies": true`.
