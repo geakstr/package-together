@@ -91,3 +91,5 @@ As you can see `api` and `client` has common dependencies (`async` and `eslint`)
 If you want use specific version of dependency for subproject `package-together` allow this via next syntaxis: `"dependencies": ["async@1.3.0"]`.
 
 For using all dependencies from main `package.json` declare `"dependencies": true`, `"devDependencies": true`.
+
+**Remember** you must do `npm install <dep> --save` only to main `project/package.json`, because `package-together` will rewrite sub `package.json` files.
