@@ -51,7 +51,7 @@ function write(dir, data) {
       return console.log(err);
     }
 
-    exec("npm install", {
+    exec("npm install --no-optional", {
       cwd: dir
     }, function(err, stdout, stderr) {
       if (err) {
